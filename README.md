@@ -152,28 +152,3 @@ Static host (frontend) ----HTTPS----> FastAPI host ----TLS----> Managed PostgreS
                                       +----> LLM API
 ```
 
-Use a managed PostgreSQL service and a Python/FastAPI host. Set `API_BASE_URL` in the frontend configuration and `DATABASE_URL`, `CORS_ORIGINS`, and AI settings as backend environment variables.
-
-## Privacy
-
-The source data contains customer PII. Do not publish the raw Excel files or expose name, phone, or email in public endpoints. If publishing this portfolio publicly, replace the supplied data with synthetic/anonymized data or keep the data private.
-## Final portfolio updates
-
-- Home introduction is concise and positions Geoffrey as a Machine Learning / AI / Automation Engineer and Data Analyst.
-- Technical toolkit is intentionally placed before professional experience and highlights Python, Pandas, SQL/PostgreSQL, ETL, AWS ML, n8n, RAG/AI, Grafana and engineering skills.
-- Current Equity Bank experience now highlights the published n8n fraud-detection automation.
-- Python Insights and SQL Insights include interactive fraud-risk dashboards with threat levels, transaction value/volume, channel exposure and peak analysis.
-- Fraud views use an explainable rule-based **risk proxy**, not a confirmed fraud label, because the supplied transactions dataset does not contain ground-truth fraud labels.
-- Dashboard filters remain available for date, transaction type, channel, merchant category and account type.
-- The visual system uses restrained blue, slate and light-grey gradients rather than a highly saturated palette.
-
-
-
-## Latest performance and visual updates
-- Unified the portfolio around a restrained dynamic blue-grey/light-grey design system across Home, Professional Snapshot, insights, FinAI, About, resume/contact areas and footers.
-- Added GitHub (`https://github.com/Jeffgmw`) and LinkedIn (`http://www.linkedin.com/in/geoffrey-maina-310548127`) profile links.
-- Reduced Home section spacing for a tighter portfolio flow.
-- Reduced dashboard startup work by loading critical KPI/trend/risk charts first and deferring secondary charts until the browser is idle.
-- Consolidated filter-option loading into one API request and added composite PostgreSQL indexes for common dashboard filters/time-series joins.
-- Restricted Plotly modebar controls to zoom in, zoom out, download plot and autoscale; pan, selection, lasso and reset controls are removed.
-- Fixed the filtered summary channel query so its bind parameters are passed correctly.
