@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Python Insights | Geoffrey Maina</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="../index.html">GM<span>.</span></a>
+      <nav>
+        <a href="../index.html">Home</a
+        ><a class="active" href="python-dashboard.html">Python Insights</a
+        ><a href="sql-dashboard.html">SQL Insights</a
+        ><a href="ai-assistant.html">FinAI</a><a href="about.html">About</a>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="page-head">
+        <p class="eyebrow">PYTHON INSIGHTS</p>
+        <h1>Financial intelligence, visualised.</h1>
+        <p class="dashboard-description">
+          Explore transaction activity, channels, customers and a rule-based
+          fraud-risk proxy inspired by real-world monitoring workflows. Risk
+          levels are analytical signals.
+        </p>
+      </div>
+      <section class="filters">
+        <label>Start date<input id="startDate" type="date" /></label
+        ><label>End date<input id="endDate" type="date" /></label
+        ><label
+          >Transaction type<select id="txnType">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Channel<select id="channel">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Merchant category<select id="merchant">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Account type<select id="accountType">
+            <option value="">All</option>
+          </select></label
+        ><button id="apply" class="btn">Apply filters</button>
+      </section>
+      <section class="kpis">
+        <div><span>Total Customers</span><strong id="customers">—</strong></div>
+        <div><span>Total Accounts</span><strong id="accounts">—</strong></div>
+        <div>
+          <span>Total Transaction Amount</span><strong id="value">—</strong>
+        </div>
+        <div>
+          <span>Total Channels</span><strong id="channelsKpi">—</strong>
+        </div>
+      </section>
+      <section class="dashboard-grid">
+        <article class="chart chart-large">
+          <div class="chart-title">
+            <h3>Transaction activity over time</h3>
+            <span>Volume + value</span>
+          </div>
+          <div id="trend"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Fraud-risk threat levels</h3>
+            <span>Rule-based proxy</span>
+          </div>
+          <div id="threatLevels"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Transaction value by channel</h3>
+            <span>Channel exposure</span>
+          </div>
+          <div id="channels"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Peak risk analysis</h3>
+            <span>When signals intensify</span>
+          </div>
+          <div id="riskPeak"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Transaction types</h3>
+            <span>Mix</span>
+          </div>
+          <div id="types"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Merchant categories</h3>
+            <span>Value concentration</span>
+          </div>
+          <div id="merchantChart"></div>
+        </article>
+        <article class="chart wide">
+          <div class="chart-title">
+            <h3>Income vs transaction activity</h3>
+            <span>Customer-level view</span>
+          </div>
+          <div id="income"></div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>
+        <strong>Geoffrey Maina Wacera</strong
+        ><span class="footer-social"
+          ><a
+            href="https://github.com/Jeffgmw"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          ><a
+            href="http://www.linkedin.com/in/geoffrey-maina-310548127"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          ></span
+        >
+      </div>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/python-dashboard.js"></script>
+  </body>
+</html>

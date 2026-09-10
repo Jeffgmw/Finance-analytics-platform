@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FinAI</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="../index.html">Fin<span>Analytics</span></a>
+      <nav>
+        <a href="../index.html">Home</a
+        ><a href="python-dashboard.html">Python Insights</a
+        ><a href="sql-dashboard.html">SQL Insights</a
+        ><a class="active" href="ai-assistant.html">FinAI</a
+        ><a href="about.html">About</a>
+      </nav>
+    </header>
+    <main class="container narrow">
+      <p class="eyebrow">FINAI</p>
+      <h1>Ask the portfolio</h1>
+      <p>
+        Ask questions about the analytics dataset. FinAI receives a controlled
+        context and does not execute user-generated SQL.
+      </p>
+      <div class="suggestions">
+        <button>What are the main account types?</button
+        ><button>What should I know about transaction activity?</button
+        ><button>Summarize the portfolio.</button>
+      </div>
+      <div id="chat" class="chat"></div>
+      <form id="chatForm" class="chat-form">
+        <textarea
+          id="message"
+          rows="3"
+          maxlength="2000"
+          placeholder="e.g. Summarize the transaction activity"
+        ></textarea
+        ><button class="btn">Ask FinAI</button>
+      </form>
+    </main>
+    <footer class="footer">
+      <div>
+        <strong>Geoffrey Maina Wacera</strong
+        ><span class="footer-social"
+          ><a
+            href="https://github.com/Jeffgmw"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          ><a
+            href="http://www.linkedin.com/in/geoffrey-maina-310548127"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          ></span
+        >
+      </div>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/ai-assistant.js"></script>
+  </body>
+</html>

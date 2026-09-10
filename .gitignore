@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.vscode/
+.idea/
+frontend/node_modules/
+data_pipeline/data/processed/*
+!data_pipeline/data/processed/.gitkeep
+*.log

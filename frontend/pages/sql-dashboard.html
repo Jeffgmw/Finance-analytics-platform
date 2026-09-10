@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SQL Insights | Geoffrey Maina</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="../index.html">GM<span>.</span></a>
+      <nav>
+        <a href="../index.html">Home</a
+        ><a href="python-dashboard.html">Python Insights</a
+        ><a class="active" href="sql-dashboard.html">SQL Insights</a
+        ><a href="ai-assistant.html">FinAI</a><a href="about.html">About</a>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="page-head">
+        <p class="eyebrow">SQL INSIGHTS</p>
+        <h1>PostgreSQL analytics in action.</h1>
+        <p class="dashboard-description">
+          A deeper relational view using JOINs, CTEs, CASE expressions,
+          aggregates and window functions to explore portfolio performance and
+          transaction-monitoring risk signals.
+        </p>
+      </div>
+      <section class="filters">
+        <label>Start date<input id="startDate" type="date" /></label
+        ><label>End date<input id="endDate" type="date" /></label
+        ><label
+          >Transaction type<select id="txnType">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Channel<select id="channel">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Merchant category<select id="merchant">
+            <option value="">All</option>
+          </select></label
+        ><label
+          >Account type<select id="accountType">
+            <option value="">All</option>
+          </select></label
+        ><button id="apply" class="btn">Apply filters</button>
+      </section>
+      <section class="kpis">
+        <div><span>Total Customers</span><strong id="customers">—</strong></div>
+        <div><span>Total Accounts</span><strong id="accounts">—</strong></div>
+        <div>
+          <span>Total Transaction Amount</span><strong id="txnValue">—</strong>
+        </div>
+        <div>
+          <span>Total Channels</span><strong id="channelsKpi">—</strong>
+        </div>
+      </section>
+      <section class="dashboard-grid">
+        <article class="chart chart-large">
+          <div class="chart-title">
+            <h3>Transaction value & volume by month</h3>
+            <span>CTE + aggregation</span>
+          </div>
+          <div id="trend"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Fraud-risk threat levels</h3>
+            <span>SQL CASE scoring</span>
+          </div>
+          <div id="threatLevels"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Risk value by channel</h3>
+            <span>Channel exposure</span>
+          </div>
+          <div id="channels"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Peak risk analysis</h3>
+            <span>Time concentration</span>
+          </div>
+          <div id="riskPeak"></div>
+        </article>
+        <article class="chart">
+          <div class="chart-title">
+            <h3>Account portfolio</h3>
+            <span>Type / status</span>
+          </div>
+          <div id="accountsChart"></div>
+        </article>
+        <article class="chart wide customer360-chart">
+          <div class="chart-title">
+            <h3>Customer 360 — top customers</h3>
+            <span>Anonymous IDs</span>
+          </div>
+          <div class="customer360-scroll"><div id="customerTable"></div></div>
+        </article>
+      </section>
+      <section class="code-note">
+        <h3>SQL patterns demonstrated</h3>
+        <div class="chips">
+          <span>JOIN</span><span>GROUP BY</span><span>CASE</span><span>CTE</span
+          ><span>Window function</span><span>Aggregates</span
+          ><span>ORDER BY</span><span>Date aggregation</span>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>
+        <strong>Geoffrey Maina Wacera</strong
+        ><span class="footer-social"
+          ><a
+            href="https://github.com/Jeffgmw"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          ><a
+            href="http://www.linkedin.com/in/geoffrey-maina-310548127"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          ></span
+        >
+      </div>
+      <a href="../index.html">Home ↑</a>
+    </footer>
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/sql-dashboard.js"></script>
+  </body>
+</html>
