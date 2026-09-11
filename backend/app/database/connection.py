@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://finance_user:finance_password@localhost:5432/finance_analytics"
-    cors_origins: str = "http://localhost:5500,http://127.0.0.1:5500"
+    cors_origins: str = "https://finance-analytics-platform-1.onrender.com"
     ai_api_key: str = ""
     ai_base_url: str = "https://api.openai.com/v1"
     ai_model: str = "gpt-4.1-mini"
