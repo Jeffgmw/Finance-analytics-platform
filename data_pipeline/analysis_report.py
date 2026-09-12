@@ -17,7 +17,7 @@ def main():
     )
     engine = create_engine(url)
     monthly = pd.read_sql(
-        "SELECT DATE_TRUNC('month', txn_date)::date AS month, SUM(amount) total_value FROM transactions GROUP BY 1 ORDER BY 1",
+        "SELECT DATE_TRUNC('month', txn_date)::date month, SUM(amount) total_value FROM transactions GROUP BY 1 ORDER BY 1",
         engine,
     )
     OUT.mkdir(parents=True, exist_ok=True)
