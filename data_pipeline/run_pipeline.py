@@ -14,7 +14,7 @@ from data_pipeline.validate import validate_batch, validate_relationships
 def run(reset=False, validate_only=False):
     database_url = os.getenv(
         "DATABASE_URL",
-        "postgresql+psycopg://finance_user:finance_password@localhost:5432/finance_analytics",
+        "postgresql+psycopg://finance_analytics_db_la8f_user:HzUWl6Gkq6osKkpk3WEp1oTZd42tC1zx@dpg-dahq8qrm8hqs73cune80-a.ohio-postgres.render.com/finance_analytics_db_la8f",
     )
     customers = transform_customers(read_small_excel(CUSTOMERS_FILE))
     accounts = transform_accounts(read_small_excel(ACCOUNTS_FILE))
