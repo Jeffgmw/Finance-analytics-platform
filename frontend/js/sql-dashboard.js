@@ -115,12 +115,10 @@ function drawCore(m, fr) {
   );
 }
 async function loadCore() {
-  const f = filterParams();
-  const [s, m, fr] = await Promise.all([
-    apiGet("/api/analytics/sql/summary", f),
-    apiGet("/api/analytics/sql/monthly-transactions", f),
-    apiGet("/api/analytics/sql/fraud-overview", f),
-  ]);
+  const data = await apiGet("/api/analytics/dashboard", filterParams());
+  const s = data.summary;
+  const m = data.monthly;
+  const fr = data.fraud;
   customers.textContent = money(s.customers);
   accounts.textContent = money(s.accounts);
   txnValue.textContent = money(s.transaction_value);

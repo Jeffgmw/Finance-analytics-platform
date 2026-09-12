@@ -34,6 +34,29 @@ common = dict(
 )
 
 
+@router.get("/dashboard")
+def dashboard(
+    db: Session = Depends(get_db),
+    start_date: date | None = None,
+    end_date: date | None = None,
+    transaction_type: str | None = None,
+    channel: str | None = None,
+    merchant_category: str | None = None,
+    account_type: str | None = None,
+):
+    return analytics_service.dashboard(
+        db,
+        filters(
+            start_date,
+            end_date,
+            transaction_type,
+            channel,
+            merchant_category,
+            account_type,
+        ),
+    )
+
+
 @router.get("/python/summary")
 def python_summary(
     db: Session = Depends(get_db),

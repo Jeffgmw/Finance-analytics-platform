@@ -115,12 +115,10 @@ function drawCore(m, fr) {
   );
 }
 async function loadCore() {
-  const f = filterParams();
-  const [s, m, fr] = await Promise.all([
-    apiGet("/api/analytics/python/summary", f),
-    apiGet("/api/analytics/python/monthly-transactions", f),
-    apiGet("/api/analytics/python/fraud-overview", f),
-  ]);
+  const data = await apiGet("/api/analytics/dashboard", filterParams());
+  const s = data.summary;
+  const m = data.monthly;
+  const fr = data.fraud;
   customers.textContent = fmt(s.customers);
   accounts.textContent = fmt(s.accounts);
   value.textContent = fmt(s.transaction_value);

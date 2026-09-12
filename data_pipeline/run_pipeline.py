@@ -1,6 +1,9 @@
 import argparse
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
 from data_pipeline.config import *
 from data_pipeline.extract import iter_excel_batches, read_small_excel
 from data_pipeline.transform import (
@@ -45,7 +48,10 @@ def run(reset=False, validate_only=False):
         load_dataframe(database_url, "transactions", batch)
         txn_count += len(batch)
         print(f"Loaded transactions: {txn_count:,}")
-    print("ETL complete.")
+    from data_pipeline.build_analytics import build as build_analytics
+
+    build_analytics(database_url)
+    print("ETL complete. Analytics serving tables refreshed.")
 
 
 if __name__ == "__main__":
