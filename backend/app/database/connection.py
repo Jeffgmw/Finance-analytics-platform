@@ -4,8 +4,8 @@ from sqlalchemy.orm import sessionmaker
 
 
 class Settings(BaseSettings):
-    #database_url: str = "postgresql+psycopg://finance_user:finance_password@localhost:5432/finance_analytics"
-    database_url:str = "postgresql+psycopg://finance_analytics_db_la8f_user:HzUWl6Gkq6osKkpk3WEp1oTZd42tC1zx@dpg-dahq8qrm8hqs73cune80-a.ohio-postgres.render.com/finance_analytics_db_la8f"
+    # database_url: str = "postgresql+psycopg://finance_user:finance_password@localhost:5432/finance_analytics"
+    database_url: str = "postgresql+psycopg://finance_analytics_db_la8f_user:HzUWl6Gkq6osKkpk3WEp1oTZd42tC1zx@dpg-dahq8qrm8hqs73cune80-a.ohio-postgres.render.com/finance_analytics_db_la8f"
 
     cors_origins: str = "https://finance-analytics-platform-1.onrender.com"
     ai_api_key: str = ""
