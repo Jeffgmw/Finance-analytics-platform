@@ -125,13 +125,10 @@ async function loadCore() {
   channelsKpi.textContent = fmt(s.channels);
   drawCore(m, fr);
 }
-async function loadSecondary() {
-  const f = filterParams();
-  const [t, mc, i] = await Promise.all([
-    apiGet("/api/analytics/python/transaction-types", f),
-    apiGet("/api/analytics/python/merchant-categories", f),
-    apiGet("/api/analytics/python/income-activity", f),
-  ]);
+function drawSecondary(data) {
+  const t = data.transaction_types || [];
+  const mc = data.merchant_categories || [];
+  const i = data.income_activity || [];
   plot(
     "types",
     [
@@ -176,6 +173,20 @@ async function loadSecondary() {
     },
   );
 }
+
+async function loadDashboard() {
+  const data = await apiGet("/api/analytics/python/dashboard", filterParams());
+  const s = data.summary,
+    m = data.monthly,
+    fr = data.fraud;
+  customers.textContent = fmt(s.customers);
+  accounts.textContent = fmt(s.accounts);
+  value.textContent = fmt(s.transaction_value);
+  channelsKpi.textContent = fmt(s.channels);
+  drawCore(m, fr);
+  drawSecondary(data.secondary);
+}
+
 function idle(fn) {
   if ("requestIdleCallback" in window)
     requestIdleCallback(fn, { timeout: 1200 });
@@ -184,11 +195,14 @@ function idle(fn) {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     await populate();
-    await loadCore();
-    idle(() => loadSecondary());
+    await loadDashboard();
     apply.addEventListener("click", async () => {
-      await loadCore();
-      idle(() => loadSecondary());
+      apply.disabled = true;
+      try {
+        await loadDashboard();
+      } finally {
+        apply.disabled = false;
+      }
     });
   } catch (e) {
     document.body.insertAdjacentHTML(

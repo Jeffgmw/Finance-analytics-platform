@@ -125,11 +125,9 @@ async function loadCore() {
   channelsKpi.textContent = money(s.channels);
   drawCore(m, fr);
 }
-async function loadSecondary() {
-  const [a, c] = await Promise.all([
-    apiGet("/api/analytics/sql/account-summary"),
-    apiGet("/api/analytics/sql/customer-360", filterParams()),
-  ]);
+function drawSecondary(data) {
+  const a = data.account_summary || [];
+  const c = data.customer_360 || [];
   sqlPlot(
     "accountsChart",
     [
@@ -144,6 +142,20 @@ async function loadSecondary() {
   const rows = c.slice(0, 30);
   customerTable.innerHTML = `<div style="overflow:auto"><table><thead><tr><th>Customer</th><th>Income</th><th>Credit score</th><th>Accounts</th><th>Balance</th><th>Transactions</th><th>Transaction value</th><th>Rank</th></tr></thead><tbody>${rows.map((x) => `<tr><td>Customer #${x.customer_id}</td><td>${money(x.annual_income)}</td><td>${x.credit_score ?? "—"}</td><td>${x.account_count}</td><td>${money(x.total_balance)}</td><td>${x.transaction_count}</td><td>${money(x.total_transaction_value)}</td><td>${x.transaction_value_rank}</td></tr>`).join("")}</tbody></table></div>`;
 }
+
+async function loadDashboard() {
+  const data = await apiGet("/api/analytics/sql/dashboard", filterParams());
+  const s = data.summary,
+    m = data.monthly,
+    fr = data.fraud;
+  customers.textContent = money(s.customers);
+  accounts.textContent = money(s.accounts);
+  txnValue.textContent = money(s.transaction_value);
+  channelsKpi.textContent = money(s.channels);
+  drawCore(m, fr);
+  drawSecondary(data);
+}
+
 function idle(fn) {
   if ("requestIdleCallback" in window)
     requestIdleCallback(fn, { timeout: 1200 });
@@ -152,11 +164,14 @@ function idle(fn) {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     await populate();
-    await loadCore();
-    idle(() => loadSecondary());
+    await loadDashboard();
     apply.addEventListener("click", async () => {
-      await loadCore();
-      idle(() => loadSecondary());
+      apply.disabled = true;
+      try {
+        await loadDashboard();
+      } finally {
+        apply.disabled = false;
+      }
     });
   } catch (e) {
     document.body.insertAdjacentHTML(
