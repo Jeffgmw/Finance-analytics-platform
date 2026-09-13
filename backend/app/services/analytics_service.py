@@ -65,7 +65,7 @@ def summary(db, f):
 
 def monthly_transactions(db, f):
     if not _has_filters(f):
-        q = text("""SELECT DATE_TRUNC('month',txn_date)::date month,SUM(transaction_count) transaction_count,
+        q = text("""SELECT DATE_TRUNC('month',txn_date)::date AS month,SUM(transaction_count) transaction_count,
                   SUM(total_value) total_value FROM analytics_daily_summary GROUP BY 1 ORDER BY 1""")
         return [dict(r._mapping) for r in db.execute(q)]
     clauses, params = _analytics_filter(f)
