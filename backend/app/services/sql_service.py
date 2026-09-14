@@ -1,4 +1,5 @@
 from sqlalchemy import text
+from sqlalchemy.orm import Session
 
 
 def _where(f):
@@ -89,8 +90,9 @@ def customer_360(db, f):
 
 
 def sql_dashboard(db, f):
-    return {
-        "summary": transaction_summary(db, f),
-        "account_summary": account_summary(db),
-        "customer_360": customer_360(db, f),
-    }
+    # The shared dashboard summary is supplied by analytics_service.dashboard().
+    # Do not return a second `summary` object here: the SQL endpoint merges this
+    # result with the shared dashboard payload, and returning another summary
+    # would overwrite the KPI fields (customers, accounts, transaction_value,
+    # channels) with the smaller transaction-summary shape.
+    return {"account_summary": account_summary(db), "customer_360": customer_360(db, f)}

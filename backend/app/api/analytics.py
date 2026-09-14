@@ -251,6 +251,8 @@ def sql_dashboard(
     f = filters(
         start_date, end_date, transaction_type, channel, merchant_category, account_type
     )
+    # Keep the shared dashboard summary as the single source of truth for the
+    # SQL Insights KPIs. SQL-specific data is added without overwriting it.
     return {
         **analytics_service.dashboard(db, f),
         **sql_service.sql_dashboard(db, f),
