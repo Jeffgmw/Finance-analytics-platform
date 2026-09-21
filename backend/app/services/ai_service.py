@@ -51,7 +51,7 @@ async def chat(db: Session, message: str):
 
     if not settings.ai_api_key:
         return {
-            "answer": "AI is not configured yet. Set AI_API_KEY on the backend to enable FinAI.",
+            "answer": "Hmmm..Lemme set up the AI api key real quick...",
             "context": context,
             "sources": ["resume", "financial_analytics"],
         }
